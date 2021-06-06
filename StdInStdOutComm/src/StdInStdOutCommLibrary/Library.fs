@@ -26,9 +26,12 @@ type IO (inStream: Stream, outStream: Stream) =
             |> List.map (fun (i, value) -> value <<< (i * 8))
             |> List.reduce (+)
         
-        [0 .. size - 1]
-        |> List.map (fun _ -> getString())
-        |> List.reduce (+)
+        if size > 0
+        then
+            [0 .. size - 1]
+            |> List.map (fun _ -> getString())
+            |> List.reduce (+)
+        else ""
 
     member _.send (message: string) = 
         (message.Length, [0 .. HeaderSize - 1])
