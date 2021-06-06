@@ -22,7 +22,6 @@ type IO (inStream: Stream, outStream: Stream) =
         let size =
             [0 .. HeaderSize - 1]
             |> List.map (fun _ -> getInt())
-            |> fun a -> printfn "message size: %A" a; a
             |> List.indexed
             |> List.map (fun (i, value) -> value <<< (i * 4))
             |> List.reduce (+)
@@ -40,7 +39,6 @@ type IO (inStream: Stream, outStream: Stream) =
             let b = (s &&& 15) |> byte
             b, (s >>> 4))
         |> fst
-        |> fun a -> printfn "sent message size: %A" a; a
         |> List.iter outStream.WriteByte
         
         message
