@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>StdInStdOutComm</PackageId>
+    <Authors>Olly Larkin</Authors>
+    <Product>StdInStdOutComm</Product>
+    <Description>A package to handle communication accross streams using a simple protocol (4 byte header to determine message size followed by message body).</Description>
+    <RepositoryUrl>https://github.com/OllyLarkinFYP/StdInStdOutComm</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
