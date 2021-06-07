@@ -7,7 +7,7 @@ type IO (inStream: Stream, outStream: Stream) =
 
     /// Size of the message header in bytes
     [<Literal>]
-    let HeaderSize = 16
+    let HeaderSize = 8
 
     member _.receive () =
         let getInt () =
@@ -23,7 +23,7 @@ type IO (inStream: Stream, outStream: Stream) =
             [0 .. HeaderSize - 1]
             |> List.map (fun _ -> getInt())
             |> List.indexed
-            |> List.map (fun (i, value) -> value <<< (i * 4))
+            |> List.map (fun (i, value) -> value <<< (i * 8))
             |> List.reduce (+)
         
         if size > 0
@@ -36,8 +36,8 @@ type IO (inStream: Stream, outStream: Stream) =
     member _.send (message: string) = 
         (message.Length, [0 .. HeaderSize - 1])
         ||> List.mapFold (fun s _ ->
-            let b = (s &&& 15) |> byte
-            b, (s >>> 4))
+            let b = (s &&& 255) |> byte
+            b, (s >>> 8))
         |> fst
         |> List.iter outStream.WriteByte
         

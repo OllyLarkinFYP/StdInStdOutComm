@@ -7,7 +7,7 @@
     <Product>StdInStdOutComm</Product>
     <Description>A package to handle communication accross streams using a simple protocol (4 byte header to determine message size followed by message body).</Description>
     <RepositoryUrl>https://github.com/OllyLarkinFYP/StdInStdOutComm</RepositoryUrl>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
