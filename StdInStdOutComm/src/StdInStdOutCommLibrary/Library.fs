@@ -7,7 +7,7 @@ type IO (inStream: Stream, outStream: Stream) =
 
     /// Size of the message header in bytes
     [<Literal>]
-    let HeaderSize = 4
+    let HeaderSize = 16
 
     member _.receive () =
         let getInt () =
